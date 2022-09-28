@@ -1,6 +1,9 @@
 from flask import Flask
-from .extensions import db, migrate
+from .extensions import db, migrate, login_manager
 from .routes.ucBp import ucBp
+from .routes.main import main
+from .routes.authBp import authBp
+from .models.user import User
 
 
 def create_app():
@@ -11,7 +14,15 @@ def create_app():
 
     db.init_app(app)
     migrate.init_app(app)
+    login_manager.login_view = 'auth.login'
+    login_manager.init_app(app)
 
+    app.register_blueprint(main)
     app.register_blueprint(ucBp)
+    app.register_blueprint(authBp)
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
 
     return app

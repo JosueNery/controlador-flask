@@ -1,28 +1,20 @@
-from flask import Blueprint, render_template, request, redirect, url_for
-from flask_login import login_required, current_user
+""" from flask import Blueprint, render_template, request, redirect, url_for
+
 from ..extensions import db
-from ..models.uc import Uc
+from ..models.aluno import Alunos
 from datetime import date, datetime
 
-ucBp = Blueprint('ucBp', __name__)
+alBp = Blueprint('alBp', __name__)
 
 
-@ucBp.route('/uc')
-def uc_list():
-    # db.create_all()
-    ucs_query = Uc.query.all()
-    return render_template('uc_list.html', ucs=ucs_query)
+@alBp.route('/alunos')
+def alBp_list():
+    alBp_query = alBp.query.all()
+    return render_template('alBp_list.html', alBp=alBp_query)
 
 
-@ucBp.route('/uc/create')
-@login_required
-def create_uc():
-    return render_template('uc_create.html')
-
-
-@ucBp.route('/uc/add', methods=['POST'])
-@login_required
-def add_uc():
+@alBp.route('/alunos/add', methods=['POST'])
+def add_alBp():
 
     sNome = request.form["nome"]
     sTipo = request.form["tipo"]
@@ -36,15 +28,13 @@ def add_uc():
     return redirect(url_for('ucBp.uc_list'))
 
 
-@ucBp.route('/uc/update/<uc_id>')
-@login_required
+@alBp.route('/uc/update/<uc_id>')
 def update_uc(uc_id=0):
     uc_query = Uc.query.filter_by(id=uc_id).first()
     return render_template('uc_update.html', uc=uc_query)
 
 
-@ucBp.route('/uc/upd', methods=['POST'])
-@login_required
+@alBp.route('/uc/upd', methods=['POST'])
 def upd_uc():
 
     iUc = request.form["id"]
@@ -64,15 +54,13 @@ def upd_uc():
     return redirect(url_for('ucBp.uc_list'))
 
 
-@ucBp.route('/uc/delete/<uc_id>')
-@login_required
+@alBp.route('/uc/delete/<uc_id>')
 def delete_uc(uc_id=0):
     uc_query = Uc.query.filter_by(id=uc_id).first()
     return render_template('uc_delete.html', uc=uc_query)
 
 
-@ucBp.route('/uc/dlt', methods=['POST'])
-@login_required
+@alBp.route('/uc/dlt', methods=['POST'])
 def dtl_uc():
 
     iUc = request.form["id"]
@@ -81,3 +69,4 @@ def dtl_uc():
     db.session.commit()
 
     return redirect(url_for('ucBp.uc_list'))
+ """
