@@ -14,29 +14,28 @@
     <section class="hero is-primary is-fullheight" style="text-align: center;">
 
         <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-
-                    <div id="navbarMenuHeroA" class="navbar-menu">
-                        <div class="navbar-end">
-                            <a href="{{ url_for('main.index') }}" class="navbar-item">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <div id="navbarNavAltMarkup" class="navbar-collapse">
+                        <div class="navbar-nav">
+                            <a href="{{ url_for('main.index') }}" class="nav-item nav-link active">
                                 Home
                             </a>
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('ucBp.uc_list') }}" class="navbar-item">
+                            <a href="{{ url_for('ucBp.uc_list') }}" class="nav-item nav-link active">
                                 UC List
                             </a>
                             {% endif %}
                             {% if not current_user.is_authenticated %}
-                            <a href="{{ url_for('authBp.login') }}" class="navbar-item">
+                            <a href="{{ url_for('authBp.login') }}" class="nav-item nav-link active">
                                 Login
                             </a>
-                            <a href="{{ url_for('authBp.signup') }}" class="navbar-item">
+                            <a href="{{ url_for('authBp.signup') }}" class="nav-item nav-link active">
                                 Sign Up
                             </a>
                             {% endif %}
                             {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('authBp.logout') }}" class="navbar-item">
+                            <a href="{{ url_for('authBp.logout') }}" class="navbar-item nav-link active">
                                 Logout
                             </a>
                             {% endif %}
