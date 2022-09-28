@@ -23,10 +23,10 @@ def login_post():
 
     if not user or not check_password_hash(user.password, password):
         flash('Dados de login inválidos')
-        return redirect(url_for('auth.login'))
+        return redirect(url_for('authBp.login'))
 
     login_user(user, remember=remember)
-    return redirect(url_for('uc'))
+    return redirect(url_for('ucBp.uc_list'))
 
 
 @authBp.route('/signup')
@@ -44,7 +44,7 @@ def signup_post():
 
     if user:
         flash('Endereço de e-mail indisponível')
-        return redirect(url_for('auth.signup'))
+        return redirect(url_for('authBp.signup'))
 
     new_user = User(email=email, nome=nome,
                     password=generate_password_hash(password, method='sha256'))
@@ -52,7 +52,7 @@ def signup_post():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('authBp.login'))
 
 
 @authBp.route('/logout')
